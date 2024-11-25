@@ -81,7 +81,7 @@ python kafka-weather-pipeline/producer/producer.py
 python kafka-weather-pipeline/consumer/consumer.py
 ```
 
-### ** Sample Output**
+### **Sample Output**
 
 -**Producer**
 ```css
