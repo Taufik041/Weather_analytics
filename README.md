@@ -43,5 +43,12 @@ This project is a real-time weather analytics pipeline built using **Kafka** and
 
 ### **2. Clone the Repository**
 ```bash
-git clone https://github.com/your-username/your-repo-name.git
-cd your-repo-name
+git clone https://github.com/Taufik041/Weather_analytics.git
+cd Weather_analytics
+
+### **3. Install Dependencies**
+```bash
+python -m venv .venv
+source .venv/bin/activate   # Linux/Mac
+.venv\Scripts\activate      # Windows
+pip install -r requirements.txt
