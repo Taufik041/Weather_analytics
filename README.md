@@ -54,3 +54,43 @@ source .venv/bin/activate   # Linux/Mac
 .venv\Scripts\activate      # Windows
 pip install -r requirements.txt
 ```
+
+### **4. Start Kafka Services**
+- Start zookeeper:
+```bash
+./bin/windows/zookeeper-server-start.bat ./config/zookeeper.properties
+```
+- Start Kafka:
+```bash
+./bin/windows/kafka-server-start.bat ./config/server.properties
+```
+
+
+### **5. Create Kafka Topic**
+```bash
+bin/kafka-topics.sh --create --topic weatherpipline --bootstrap-server localhost:9092 --partitions 1 --replication-factor 1
+```
+
+### **6. Run the Kafka Producer**
+```PowerShell
+python kafka-weather-pipeline/producer/producer.py
+```
+
+### **7. Run the Kafka Consumer**
+```PowerShell
+python kafka-weather-pipeline/consumer/consumer.py
+```
+
+### ** Sample Output**
+
+-**Producer**
+```css
+Fetching weather data...
+Message delivered: {"city": "London", "temperature": 12.3, "humidity": 78, "description": "clear sky", "timestamp": 1701112345}
+```
+
+-**Consumer**
+```css
+Consumer is listening for messages...
+Received message: {"city": "London", "temperature": 12.3, "humidity": 78, "description": "clear sky", "timestamp": 1701112345}
+```
