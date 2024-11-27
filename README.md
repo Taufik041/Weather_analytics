@@ -83,13 +83,13 @@ python kafka-weather-pipeline/consumer/consumer.py
 
 ### **Sample Output**
 
--**Producer**
+**Producer**
 ```css
 Fetching weather data...
 Message delivered: {"city": "London", "temperature": 12.3, "humidity": 78, "description": "clear sky", "timestamp": 1701112345}
 ```
 
--**Consumer**
+**Consumer**
 ```css
 Consumer is listening for messages...
 Received message: {"city": "London", "temperature": 12.3, "humidity": 78, "description": "clear sky", "timestamp": 1701112345}

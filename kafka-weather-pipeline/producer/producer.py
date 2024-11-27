@@ -1,20 +1,26 @@
 import requests
-from confluent_kafka import Producer
-import time
 import json
+import time
+import yaml
+from confluent_kafka import Producer
+
+
+# Load secrets from secrets.yaml
+with open("kafka-weather-pipeline\secrets.yaml", "r") as f:
+    secrets = yaml.safe_load(f)
+
 
 # Kafka Producer Configuration
 producer_config = {
-    'bootstrap.servers': 'localhost:9092'  # Kafka broker
+    'bootstrap.servers': secrets['kafka_broker'],  # Kafka broker from secrets
 }
-
 producer = Producer(producer_config)
 
-# OpenWeatherMap API Configuration
-API_KEY = "641db5a7827eaef1218207e0e6715304"  # Replace with your OpenWeatherMap API key
-BASE_URL = "http://api.openweathermap.org/data/2.5/weather"
-CITY_NAME = "London"  # Replace with your desired city
 
+# OpenWeatherMap API Configuration
+API_KEY = secrets['api_key']
+BASE_URL = "http://api.openweathermap.org/data/2.5/weather"
+CITY_NAME = input("Enter a city name: ") or "london"
 def fetch_weather_data():
     """Fetch weather data from the OpenWeatherMap API."""
     params = {
@@ -37,6 +43,7 @@ def fetch_weather_data():
         print(f"Failed to fetch weather data: {response.status_code}")
         return None
 
+
 def delivery_report(err, msg):
     """Delivery report for Kafka producer."""
     if err is not None:
@@ -44,17 +51,17 @@ def delivery_report(err, msg):
     else:
         print(f"Message delivered: {msg.value().decode('utf-8')}")
 
-# Main loop
+
+# Main loop to send data every 100 seconds
 while True:
     weather_data = fetch_weather_data()
     if weather_data:
-        # Convert data to JSON
+        # Convert data to JSON and send to Kafka topic
         weather_json = json.dumps(weather_data)
-        # Send data to Kafka topic
         producer.produce(
-            'weatherpipline', 
-            key=str(weather_data['timestamp']), 
-            value=weather_json, 
+            secrets['kafka_topic'],
+            key=str(weather_data['timestamp']),
+            value=weather_json,
             callback=delivery_report
         )
         producer.flush()
