@@ -123,5 +123,5 @@ Received message: {"city": "London", "temperature": 12.3, "humidity": 78, "descr
 Weather data saved to database.
 ```
 
-**Image of the database in 'postgreSQL'**
+**Image of the database in `postgreSQL`**
 ![PostgeSQL Database](images/weatherpipeline.png)
