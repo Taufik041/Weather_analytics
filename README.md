@@ -123,14 +123,5 @@ Received message: {"city": "London", "temperature": 12.3, "humidity": 78, "descr
 Weather data saved to database.
 ```
 
----
-
-## **Next Steps and Future Improvements**
-- Add more cities and weather metrics.
-- Set up a periodic task scheduler to fetch weather data at regular intervals.
-- Expand the consumer to process data in various ways (e.g., anomaly detection, reporting).
-- Integrate with a front-end dashboard to visualize real-time weather data.
-
----
-
-Let me know if you'd like to add more details or change any part!
+**Image of the database in 'postgreSQL'**
+![PostgeSQL Database](images/weatherpipeline.png)
