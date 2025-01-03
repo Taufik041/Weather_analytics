@@ -59,6 +59,7 @@ git clone https://github.com/Taufik041/Weather_analytics.git
 cd Weather_analytics
 ```
 
+
 ### **3. Install Dependencies**
 ```bash
 python -m venv .venv
@@ -125,3 +126,5 @@ Weather data saved to database.
 
 **Image of the database in `postgreSQL`**
 ![PostgeSQL Database](images/weatherpipeline.png)
+
+Thank you 
